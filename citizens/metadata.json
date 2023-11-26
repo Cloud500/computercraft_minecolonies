@@ -1,0 +1,19 @@
+{
+    "name": "List colony citizens and army",
+    "version": "0.3.0",
+    "command": "colonyCitizens",
+    "files": [
+        {
+            "type": "git",
+            "localPath": "/colonyCitizens.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/citizens/colonyCitizens.lua"
+        }
+    ],
+    "dependencies": [
+        {
+            "type": "git",
+            "localPath": "lib/colonyDisplayManager.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/apis/colonyDisplayManager.lua"
+        }
+    ]
+}
