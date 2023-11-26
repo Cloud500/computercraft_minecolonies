@@ -1,0 +1,19 @@
+{
+    "name": "List colony building queue",
+    "version": "0.5.0",
+    "command": "colonyBuildQueue",
+    "files": [
+        {
+            "type": "git",
+            "localPath": "/colonyBuildQueue.lua",
+            "GitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/buildQueue/colonyBuildQueue.lua"
+        }
+    ],
+    "dependencies": [
+        {
+            "type": "git",
+            "localPath": "lib/colonyDisplayManager.lua",
+            "GitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/apis/colonyDisplayManager.lua"
+        }
+    ]
+}
