@@ -1,0 +1,19 @@
+{
+    "name": "List colony requests",
+    "version": "0.4.0",
+    "command": "colonyRequests",
+    "files": [
+        {
+            "type": "git",
+            "localPath": "/colonyRequests.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/requests/colonyRequests.lua"
+        }
+    ],
+    "dependencies": [
+        {
+            "type": "git",
+            "localPath": "lib/colonyDisplayManager.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/apis/colonyDisplayManager.lua"
+        }
+    ]
+}
