@@ -1,6 +1,6 @@
-local DEBUG = true
+local DEBUG = false
 local SCALE = 0.5
-local workspacePath = "C:\\Users\\chris\\IdeaProjects\\minecraft\\minecolony"
+local workspacePath = ""
 
 local colonyManager = nil
 local monitor = nil
