@@ -1,0 +1,24 @@
+{
+    "name": "Colony item manager",
+    "version": "0.1.0",
+    "command": "colonyItemManager",
+    "files": [
+        {
+            "type": "git",
+            "localPath": "/colonyItemManager.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/itemManager/colonyItemManager.lua"
+        }
+    ],
+    "dependencies": [
+        {
+            "type": "git",
+            "localPath": "lib/logger.lua",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/apis/logger.lua"
+        },
+        {
+            "type": "git",
+            "localPath": "items.json",
+            "gitPath": "https://raw.githubusercontent.com/Cloud500/computercraft_minecolonies/main/itemManager/items.json"
+        }
+    ]
+}
