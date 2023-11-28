@@ -1,0 +1,24 @@
+{
+    "config": {
+        "chestPosition": "top",
+        "colonyME": "left",
+        "mainME": "right",
+        "networkShare": true,
+        "logging": {
+            "enabled": true,
+            "logLevel": 4,
+            "path": "/itemManager.log",
+            "outputToTerminal": true
+        }
+    },
+    "items": [
+        {
+            "item": "minecraft:oak_log",
+            "count": 100
+        },
+        {
+            "item": "minecraft:dirt",
+            "count": 100
+        }
+    ]
+}
