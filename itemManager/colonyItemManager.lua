@@ -2,7 +2,7 @@ local DEBUG = false
 local fakePeripheralPath = ""
 
 ---@alias ItemJson {config: {chestPosition: string, colonyME: string, mainME: string, networkShare: boolean, logging: {enabled: boolean, logLevel: integer, path: string, outputToTerminal: boolean}}, items: {item: string, count: integer}[]}
----@alias MEBridge {importItemFromPeripheral: fun(table, string), exportItemToPeripheral: fun(table, string), getItem: fun(table):({name: string, amount: integer})}
+---@alias MEBridge {importItemFromPeripheral: fun(table, string), exportItemToPeripheral: fun(table, string), getItem: fun(table):({name: string, amount: integer}), listItems: fun():(table)[]}
 
 
 ---Helper Function for CraftOS Debugging/Testing
@@ -155,31 +155,54 @@ end
 ---@param itemName string Name of the item
 ---@return integer amount Current colony item amount
 function ColonyItemManager:getCurrentColonyAmount(itemName)
-    local result = self.colonyMEBridge.getItem(
-        { name = itemName }
-    )
+    local result = self.colonyMEBridge.listItems()
 
-    local amount = result.amount
-    if amount == nil then
-        amount = 0
+    for itemNumber in pairs(result) do
+        local currItem = result[itemNumber]
+        if currItem.name == itemName then
+            local amount = currItem.amount
+            if amount == nil then
+                amount = 0
+            end
+            if currItem.nbt ~= nil
+                and currItem.nbt.tag ~= nil
+                and currItem.nbt.tag.Damage ~= nil then
+                if currItem.nbt.tag.Damage == 0 then
+                    return amount
+                end
+            else
+                return amount
+            end
+        end
     end
-
-    return amount
+    return 0
 end
 
 ---Get the current main network amount from given item
 ---@param itemName string Name of the item
 ---@return integer amount Current main network item amount
 function ColonyItemManager:getCurrentMainAmount(itemName)
-    local result = self.mainMEBridge.getItem(
-        { name = itemName }
-    )
-    local amount = result.amount
-    if amount == nil then
-        amount = 0
-    end
+    local result = self.mainMEBridge.listItems()
 
-    return amount
+    for itemNumber in pairs(result) do
+        local currItem = result[itemNumber]
+        if currItem.name == itemName then
+            local amount = currItem.amount
+            if amount == nil then
+                amount = 0
+            end
+            if currItem.nbt ~= nil
+                and currItem.nbt.tag ~= nil
+                and currItem.nbt.tag.Damage ~= nil then
+                if currItem.nbt.tag.Damage == 0 then
+                    return amount
+                end
+            else
+                return amount
+            end
+        end
+    end
+    return 0
 end
 
 ---Calc the item amount to transfer from main network to colony network
@@ -241,6 +264,20 @@ function ColonyItemManager:checkAndTransferItems()
         if transferAmount > 0 then
             self:transferItem(itemData.item, transferAmount)
         end
+    end
+    self:clearChest()
+end
+
+function ColonyItemManager:clearChest()
+    local chest = peripheral.wrap(self:getChestPosition())
+    local chestItems = chest.list()
+    for itemNumber in pairs(chest.list(chestItems)) do
+        local itemData = chestItems[itemNumber]
+
+        self.colonyMEBridge.importItemFromPeripheral(
+            itemData,
+        self.chestPosition
+    )
     end
 end
 
